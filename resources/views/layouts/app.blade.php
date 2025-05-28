@@ -1,25 +1,30 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@yield('title', 'Dashboard')</title>
+    <title>Admin Panel</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    @livewireStyles
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
-        <div class="container">
-            <a class="navbar-brand" href="/">User Management</a>
-            <div class="collapse navbar-collapse">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" href="/users">Users</a></li>
-                </ul>
-            </div>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light px-4">
+        <a class="navbar-brand" href="#">Admin</a>
+        <div class="ms-auto">
+            @auth
+                <form action="{{ route('logout') }}" method="POST">
+                    @csrf
+                    <button class="btn btn-sm btn-outline-danger">Logout</button>
+                </form>
+            @endauth
         </div>
     </nav>
-    <div class="container">
+
+    <div class="container mt-4">
         @yield('content')
     </div>
+
+    @livewireScripts
 </body>
+
+</html>
